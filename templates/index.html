@@ -24,7 +24,7 @@
     <ul class="navbar-nav d-flex flex-row">
       {% for link in nav_links %}
         <li class="nav-item px-3">
-          <a class="nav-link text-white" href="{{ url_for('home') if link.name == 'Sākums' else url_for('rezultati1' if link.name == 'Rezultāti 1' else 'rezultati2') }}">{{ link.name }}</a>
+          <a href="{{ url_for(link.id) }}" style="color: white;">{{ link.name }}</a>
         </li>
       {% endfor %}
     </ul>
@@ -39,6 +39,15 @@
       <div class="h4 text-center title">Apraksts</div> 
       <p>ahahahahahahahahhahah</p> 
     </div> 
+  </div>
+
+
+  <div class="text-center">
+    <h1>Rezultāti</h1>
+    <p>Cilvēku atbildes</p>
+    <div class="text-center">
+      <img src="{{ url_for('static', filename='chart.png') }}" alt="Pie Chart" class="img-fluid">
+    </div>
   </div>
 
 </body>
