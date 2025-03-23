@@ -26,23 +26,27 @@
     <ul class="navbar-nav d-flex flex-row">
       {% for link in nav_links %}
         <li class="nav-item px-3">
-          <a class="nav-link text-white" href="{{ url_for('home') if link.name == 'Sākums' else url_for('rezultati1' if link.name == 'Rezultāti 1' else 'rezultati2') }}">{{ link.name }}</a>
+          <a href="{{ url_for(link.id) }}" style="color: white;">{{ link.name }}</a>
         </li>
       {% endfor %}
     </ul>
   </nav>
 
   <div class="text-center">
-    <h1>Rezultāti 1</h1>
-    <p>Sie ir rezultati 1</p>
+    <h2>Populārākais žanrs</h2>
     <div class="text-center">
-      <img src="{{ url_for('static', filename='chart.png') }}" alt="Pie Chart" class="img-fluid">
-    </div>
-
-    <h3 class="text-center mt-5">CSV Data</h3>
-    <div class="table-responsive">
-      {{ table_html | safe }}
-    </div>
+  <div class="text-center">
+    <img src="{{ url_for('static', filename='stab.png') }}" alt="Bar Chart" class="img-fluid">
   </div>
+
+
+  <div class="text-center">
+    <h2>Visas atbildes</h2>
+    <div class="text-center">
+
+  <div>
+    {{ table_html | safe }}
+  </div>
+
 </body>
 </html>
