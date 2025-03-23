@@ -17,8 +17,7 @@ nav_links = [
 @app.route('/')
 def index():
     df = pd.read_csv("data/ah.csv")  
-    table_html = df.to_html(classes="table table-striped", index=False)
-
+    
     custom_colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99','#c2c2f0','#ffb3e6']
 
     plt.figure(figsize=(6,6))
@@ -30,7 +29,7 @@ def index():
     plt.savefig("static/chart.png")
     plt.close()
 
-    return render_template('index.html', nav_links=nav_links, table_html=table_html)
+    return render_template('index.html', nav_links=nav_links)
 
 
 @app.route('/rezultati1')
