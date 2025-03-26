@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="lv">
 
 <head>
   <meta charset="utf-8">
@@ -11,6 +11,7 @@
         crossorigin="anonymous">
         
   <title>Filmas</title>
+  
 </head>
 
 <body>
@@ -31,20 +32,45 @@
   </nav>
 
   <div class="text-center">
-    <h1 class="mb-3">Aptauja par dažāda vecuma cilvēku mīļākajām filmām</h1>
+    <h2 class="mb-3">Dažāda vecuma cilvēku mīļāko filmu žanri</h2>
   </div>
 
   <div class="section" id="about"> 
     <div class="container"> 
       <div class="h4 text-center title">Apraksts</div> 
-      <p>ahahahahahahahahhahah</p> 
+      <div class="text-center">
+      <p>Projektu veidoja Nīcas vidusskolas 11. klases skolēni:</p> 
+      <div style="text-align: center;">
+        <table border="1" style="margin: auto; border-collapse: collapse; width: 60%;">
+          <thead>
+              <tr>
+                  <th style="padding: 10px; background-color: #f2f2f2;">Vārds</th>
+                  <th style="padding: 10px; background-color: #f2f2f2;">Vecums</th>
+                  <th style="padding: 10px; background-color: #f2f2f2;">Mīļākais filmu žanrs</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for author in authors %}
+                  <tr>
+                      <td style="padding: 10px; text-align: center;">{{ author.name }}</td>
+                      <td style="padding: 10px; text-align: center;">{{ author.age }} gadi</td>
+                      <td style="padding: 10px; text-align: center;">{{ author.favorite_genre }}</td>
+                  </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+    </div>
+      <p>
+        Veicām aptauju, kurā noskaidrojām cilvēku vecumu, mīļāko filmu žanru un iemeslu, kāpēc patīk žanrs.
+      </p>
+      </div>
     </div> 
   </div>
 
 
   <div class="text-center">
-    <h1>Rezultāti</h1>
-    <p>Cilvēku atbildes</p>
+    <h4>Rezultāti</h4>
+    <p>Kopumā ieguvām 66 atbildes. Visvairāk atbildes, 35, bija no jauniešiem vecumā no 10 līdz 20 gadiem.</p>
     <div class="text-center">
       <img src="{{ url_for('static', filename='chart.png') }}" alt="Pie Chart" class="img-fluid">
     </div>
