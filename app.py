@@ -1,10 +1,30 @@
 import flask
 from flask import Flask, render_template
 import pandas as pd
+from peewee import SqliteDatabase, Model, CharField, IntegerField
 
 import matplotlib
 matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
+
+db = SqliteDatabase('autori.db')
+
+class Autors(Model):
+    name = CharField()
+    age = IntegerField()
+    favorite_genre = CharField()
+
+    class Meta:
+        database = db
+
+db.connect()
+db.create_tables([Autors], safe=True)
+
+if not Autors.select().exists():
+    Autors.create(name="Līga Lapiņa", age=17, favorite_genre="Komēdija")
+    Autors.create(name="Tomass Toms Sprūds", age=17, favorite_genre="Asa sižeta")
+    Autors.create(name="Henrijs Diķis", age=18, favorite_genre="Šausmenes")
+    Autors.create(name="Evita Cābele", age=17, favorite_genre="Fantāzija")
 
 app = Flask(__name__)
 
@@ -16,6 +36,7 @@ nav_links = [
 
 @app.route('/')
 def index():
+    authors = Autors.select() 
     df = pd.read_csv("data/ah.csv")  
     
     custom_colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99','#c2c2f0','#ffb3e6']
@@ -29,7 +50,7 @@ def index():
     plt.savefig("static/chart.png")
     plt.close()
 
-    return render_template('index.html', nav_links=nav_links)
+    return render_template('index.html', nav_links=nav_links, authors=authors)
 
 
 @app.route('/rezultati1')
